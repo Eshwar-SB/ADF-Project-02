@@ -1,0 +1,15 @@
+{
+	"name": "adf-july2026-dev-centralin",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "dd2893dc-1d0c-425d-9ef0-8a606ea9e755",
+		"tenantId": "2b6d3549-d541-4dc4-8ed2-3bca11bcbe07"
+	}
+}
