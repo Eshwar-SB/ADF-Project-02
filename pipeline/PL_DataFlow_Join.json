@@ -1,0 +1,51 @@
+{
+	"name": "PL_DataFlow_Join",
+	"properties": {
+		"activities": [
+			{
+				"name": "DF_Join_Dept_Employee",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_Join_Dept_Employee",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"SourceDepartment": {
+								"Container": "landing",
+								"Directory": "DataFactory/Input/DataFlow",
+								"Filename": "Department.csv"
+							},
+							"SourceEmployee": {
+								"Container": "landing",
+								"Directory": "DataFactory/Input/DataFlow",
+								"Filename": "Employee.csv"
+							},
+							"SinkJoinedOutput": {
+								"Containername": "landing",
+								"Directoryname": "DataFactory/Input/DataFlow",
+								"Filename": "Dept_Employee_Joined.csv"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-04-28T18:04:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "LS_MsSQL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "DESKTOP-8IEDT0T\\SQLEXPRESS",
+			"database": "BikeStores",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxYjBhMThiNy01NmU5LTQ4ZTMtOTZmOS03YjMzZTBiNzRlNDMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "sh-integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

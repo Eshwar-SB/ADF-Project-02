@@ -1,0 +1,33 @@
+{
+	"name": "MySqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_MySQL",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"p_username": {
+					"value": "@dataset().p_username",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"Table": {
+				"type": "string"
+			},
+			"p_username": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().Table",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

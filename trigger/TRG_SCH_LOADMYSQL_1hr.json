@@ -1,0 +1,25 @@
+{
+	"name": "TRG_SCH_LOADMYSQL_1hr",
+	"properties": {
+		"description": "Trigger to load data form Mysql to DataLake",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Mqsql_to_DataLake",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 2,
+				"startTime": "2026-04-13T23:53:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

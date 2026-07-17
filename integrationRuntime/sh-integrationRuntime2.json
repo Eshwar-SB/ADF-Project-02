@@ -1,0 +1,7 @@
+{
+	"name": "sh-integrationRuntime2",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "this linked service is to connect with Sandeep's laptop for oracle db."
+	}
+}

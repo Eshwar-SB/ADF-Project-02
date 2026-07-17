@@ -1,0 +1,73 @@
+{
+	"name": "DF_Join_Dept_Employee",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ADLS_SRC_InputFile",
+						"type": "DatasetReference"
+					},
+					"name": "SourceDepartment",
+					"description": "Read Department.csv from ADLS"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ADLS_SRC_InputFile",
+						"type": "DatasetReference"
+					},
+					"name": "SourceEmployee",
+					"description": "Read Employee.csv from ADLS"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_ADLS_TGT_TransformedData",
+						"type": "DatasetReference"
+					},
+					"name": "SinkJoinedOutput",
+					"description": "Write joined output to ADLS"
+				}
+			],
+			"transformations": [
+				{
+					"name": "JoinDeptEmployee",
+					"description": "Inner join Department and Employee on Department_id"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Department_id as string,",
+				"          Department_name as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> SourceDepartment",
+				"source(output(",
+				"          Employee_id as string,",
+				"          Employee_name as string,",
+				"          Department_id as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> SourceEmployee",
+				"SourceDepartment, SourceEmployee join(SourceDepartment@Department_id == SourceEmployee@Department_id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> JoinDeptEmployee",
+				"JoinDeptEmployee sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Dept_Employee_Joined.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> SinkJoinedOutput"
+			]
+		}
+	}
+}

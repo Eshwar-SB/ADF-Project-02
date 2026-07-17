@@ -1,0 +1,139 @@
+{
+	"name": "PL_Foreach_ADLS_MsSQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('metadata')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_ADLS_SRC_InputFile",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container": {
+											"value": "@item().source_container",
+											"type": "Expression"
+										},
+										"Directory": {
+											"value": "@item().source_directory",
+											"type": "Expression"
+										},
+										"Filename": {
+											"value": "@item().source_file",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_AzureSQL_Custome_Dev",
+									"type": "DatasetReference",
+									"parameters": {
+										"sqlschema": {
+											"value": "@item().sql_schema",
+											"type": "Expression"
+										},
+										"sqltable": {
+											"value": "@item().sql_table",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"metadata": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source_container": "landing",
+						"source_directory": "DataFactory/Input/Foreach",
+						"source_file": "department.csv",
+						"sink_container": "landing",
+						"sink_directory": "DataFactory/Input/Foreach",
+						"sink_file": "department.csv",
+						"sql_schema": "esh",
+						"sql_table": "department"
+					},
+					{
+						"source_container": "landing",
+						"source_directory": "DataFactory/Input/Foreach",
+						"source_file": "Employee.csv",
+						"sink_container": "landing",
+						"sink_directory": "DataFactory/Input/Foreach",
+						"sink_file": "Employee.csv",
+						"sql_schema": "esh",
+						"sql_table": "Employee"
+					},
+					{
+						"source_container": "landing",
+						"source_directory": "DataFactory/Input/Foreach",
+						"source_file": "sampledata.csv",
+						"sink_container": "landing",
+						"sink_directory": "DataFactory/Input/Foreach",
+						"sink_file": "sampledata.csv",
+						"sql_schema": "esh",
+						"sql_table": "sampledata"
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-15T11:25:04Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,6 @@
+{
+	"name": "sh-integrationRuntime1",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
