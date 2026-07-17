@@ -1,0 +1,223 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-projA-dev-centralin"
+		},
+		"DS_DataLake_Source_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DS_DataLake_Source'"
+		},
+		"LS_ADLS_DEV_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_DEV'"
+		},
+		"LS_AzureSQL_Dev_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AzureSQL_Dev'"
+		},
+		"LS_MsSQL_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_MsSQL'"
+		},
+		"Oracle1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Oracle1'"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://projA-dev-kv.vault.azure.net/"
+		},
+		"DS_DataLake_Source_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://projaddevst.dfs.core.windows.net/"
+		},
+		"LS_ADLS_DEV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://projaddevst.dfs.core.windows.net/"
+		},
+		"LS_AzureSQL_Dev_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "proja-dev-sds.database.windows.net"
+		},
+		"LS_AzureSQL_Dev_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "proja-dev-sdb"
+		},
+		"LS_AzureSQL_Dev_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqluser"
+		},
+		"LS_MsSQL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-8IEDT0T\\SQLEXPRESS"
+		},
+		"LS_MsSQL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "BikeStores"
+		},
+		"LS_MsSQL_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_MySQL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"LS_MySQL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "classicmodels"
+		},
+		"LS_MySQL_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "@{linkedService().p_username}"
+		},
+		"LS_MySql1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"LS_MySql1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "classicmodels"
+		},
+		"LS_MySql1_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "@{linkedService().username}"
+		},
+		"Oracle1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"Oracle1_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "OT_SRC_DEV"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/d07eb817-3d6c-4eee-af1c-af4607acabd9/resourceGroups/projA-dev-rg/providers/Microsoft.Storage/storageAccounts/projaddevst"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-projA-dev-centralin_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"DS_DataLake_Source_accountKey": {
+						"value": "[parameters('DS_DataLake_Source_accountKey')]"
+					},
+					"LS_ADLS_DEV_accountKey": {
+						"value": "[parameters('LS_ADLS_DEV_accountKey')]"
+					},
+					"LS_AzureSQL_Dev_password": {
+						"value": "[parameters('LS_AzureSQL_Dev_password')]"
+					},
+					"LS_MsSQL_password": {
+						"value": "[parameters('LS_MsSQL_password')]"
+					},
+					"Oracle1_password": {
+						"value": "[parameters('Oracle1_password')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"DS_DataLake_Source_properties_typeProperties_url": {
+						"value": "[parameters('DS_DataLake_Source_properties_typeProperties_url')]"
+					},
+					"LS_ADLS_DEV_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_DEV_properties_typeProperties_url')]"
+					},
+					"LS_AzureSQL_Dev_properties_typeProperties_server": {
+						"value": "[parameters('LS_AzureSQL_Dev_properties_typeProperties_server')]"
+					},
+					"LS_AzureSQL_Dev_properties_typeProperties_database": {
+						"value": "[parameters('LS_AzureSQL_Dev_properties_typeProperties_database')]"
+					},
+					"LS_AzureSQL_Dev_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AzureSQL_Dev_properties_typeProperties_userName')]"
+					},
+					"LS_MsSQL_properties_typeProperties_server": {
+						"value": "[parameters('LS_MsSQL_properties_typeProperties_server')]"
+					},
+					"LS_MsSQL_properties_typeProperties_database": {
+						"value": "[parameters('LS_MsSQL_properties_typeProperties_database')]"
+					},
+					"LS_MsSQL_properties_typeProperties_userName": {
+						"value": "[parameters('LS_MsSQL_properties_typeProperties_userName')]"
+					},
+					"LS_MySQL_properties_typeProperties_server": {
+						"value": "[parameters('LS_MySQL_properties_typeProperties_server')]"
+					},
+					"LS_MySQL_properties_typeProperties_database": {
+						"value": "[parameters('LS_MySQL_properties_typeProperties_database')]"
+					},
+					"LS_MySQL_properties_typeProperties_username": {
+						"value": "[parameters('LS_MySQL_properties_typeProperties_username')]"
+					},
+					"LS_MySql1_properties_typeProperties_server": {
+						"value": "[parameters('LS_MySql1_properties_typeProperties_server')]"
+					},
+					"LS_MySql1_properties_typeProperties_database": {
+						"value": "[parameters('LS_MySql1_properties_typeProperties_database')]"
+					},
+					"LS_MySql1_properties_typeProperties_username": {
+						"value": "[parameters('LS_MySql1_properties_typeProperties_username')]"
+					},
+					"Oracle1_properties_typeProperties_server": {
+						"value": "[parameters('Oracle1_properties_typeProperties_server')]"
+					},
+					"Oracle1_properties_typeProperties_username": {
+						"value": "[parameters('Oracle1_properties_typeProperties_username')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-projA-dev-centralin_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"trigger1_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-projA-dev-centralin_ArmTemplate_0')]"
+			]
+		}
+	]
+}

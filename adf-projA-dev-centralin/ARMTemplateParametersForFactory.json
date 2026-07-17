@@ -1,0 +1,78 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-projA-dev-centralin"
+		},
+		"DS_DataLake_Source_accountKey": {
+			"value": ""
+		},
+		"LS_ADLS_DEV_accountKey": {
+			"value": ""
+		},
+		"LS_AzureSQL_Dev_password": {
+			"value": ""
+		},
+		"LS_MsSQL_password": {
+			"value": ""
+		},
+		"Oracle1_password": {
+			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://projA-dev-kv.vault.azure.net/"
+		},
+		"DS_DataLake_Source_properties_typeProperties_url": {
+			"value": "https://projaddevst.dfs.core.windows.net/"
+		},
+		"LS_ADLS_DEV_properties_typeProperties_url": {
+			"value": "https://projaddevst.dfs.core.windows.net/"
+		},
+		"LS_AzureSQL_Dev_properties_typeProperties_server": {
+			"value": "proja-dev-sds.database.windows.net"
+		},
+		"LS_AzureSQL_Dev_properties_typeProperties_database": {
+			"value": "proja-dev-sdb"
+		},
+		"LS_AzureSQL_Dev_properties_typeProperties_userName": {
+			"value": "sqluser"
+		},
+		"LS_MsSQL_properties_typeProperties_server": {
+			"value": "DESKTOP-8IEDT0T\\SQLEXPRESS"
+		},
+		"LS_MsSQL_properties_typeProperties_database": {
+			"value": "BikeStores"
+		},
+		"LS_MsSQL_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"LS_MySQL_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"LS_MySQL_properties_typeProperties_database": {
+			"value": "classicmodels"
+		},
+		"LS_MySQL_properties_typeProperties_username": {
+			"value": "@{linkedService().p_username}"
+		},
+		"LS_MySql1_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"LS_MySql1_properties_typeProperties_database": {
+			"value": "classicmodels"
+		},
+		"LS_MySql1_properties_typeProperties_username": {
+			"value": "@{linkedService().username}"
+		},
+		"Oracle1_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"Oracle1_properties_typeProperties_username": {
+			"value": "OT_SRC_DEV"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/d07eb817-3d6c-4eee-af1c-af4607acabd9/resourceGroups/projA-dev-rg/providers/Microsoft.Storage/storageAccounts/projaddevst"
+		}
+	}
+}
