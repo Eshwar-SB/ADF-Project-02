@@ -4,7 +4,7 @@
 		"description": "Copy file/table from ADLS to Azure SQL",
 		"activities": [
 			{
-				"name": "Copy data",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
